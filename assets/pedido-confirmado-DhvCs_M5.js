@@ -25,7 +25,8 @@ function A(){
   let qty=O.qty||1;
   let price=O.productPrice??97.9;
   let total=price*qty;
-  let orderId=O.paidInvoiceId?`TK${String(O.paidInvoiceId).replace(/[^0-9A-Za-z]/g,``)}`:null;
+  let urlOrderId=typeof window<`u`?new URLSearchParams(window.location.search).get(`pedido`):null;
+  let orderId=urlOrderId||(O.paidInvoiceId?`TK${String(O.paidInvoiceId).replace(/[^0-9A-Za-z]/g,``)}`:null);
   let meusPedidosHref=orderId?`/meus-pedidos?pedido=${encodeURIComponent(orderId)}`:`/meus-pedidos`;
 
   return (0,D.jsx)(d,{children:(0,D.jsxs)(`div`,{className:`min-h-screen bg-[#f5f5f5] pb-24`,children:[
