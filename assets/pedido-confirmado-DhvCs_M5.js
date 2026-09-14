@@ -1,6 +1,5 @@
 import{i as e,t}from"./jsx-runtime-DUAcabCT.js";
 import{t as n}from"./react-DEX2qfRi.js";
-import{t as r}from"./link-CeT6ilhB.js";
 import{t as p}from"./package-41CfLOtP.js";
 import{t as c}from"./chevron-right--biEaSZ4.js";
 import{t as d}from"./phone-frame-CqbWzOAl.js";
@@ -28,6 +27,8 @@ function A(){
   let urlOrderId=typeof window<`u`?new URLSearchParams(window.location.search).get(`pedido`):null;
   let orderId=urlOrderId||(O.paidInvoiceId?`TK${String(O.paidInvoiceId).replace(/[^0-9A-Za-z]/g,``)}`:null);
   let meusPedidosHref=orderId?`/meus-pedidos?pedido=${encodeURIComponent(orderId)}`:`/meus-pedidos`;
+  let currentSearch=typeof window<`u`?window.location.search:``;
+  let continuarHref=`/upsellkitferramentas${currentSearch}`;
 
   return (0,D.jsx)(d,{children:(0,D.jsxs)(`div`,{className:`min-h-screen bg-[#f5f5f5] pb-24`,children:[
     (0,D.jsxs)(`div`,{className:`bg-white px-4 pb-6 pt-10 text-center`,children:[
@@ -62,7 +63,7 @@ function A(){
       ]})
     ]}),
     (0,D.jsxs)(`div`,{className:`fixed inset-x-0 bottom-0 z-40 mx-auto flex max-w-[440px] gap-2 bg-white px-4 py-3 pb-[max(env(safe-area-inset-bottom),12px)]`,children:[
-      (0,D.jsx)(r,{to:`/upsellkitferramentas`,className:`flex-1 rounded-full border border-[#e5e5e7] py-3 text-center text-[15px] font-semibold text-[#161823]`,children:`Continuar comprando`}),
+      (0,D.jsx)(`a`,{href:continuarHref,className:`flex-1 rounded-full border border-[#e5e5e7] py-3 text-center text-[15px] font-semibold text-[#161823]`,children:`Continuar comprando`}),
       (0,D.jsx)(`a`,{href:meusPedidosHref,className:`flex-1 rounded-full bg-[#fe2c55] py-3 text-center text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(37,227,155,0.35)]`,children:`Meus pedidos`})
     ]})
   ]})});

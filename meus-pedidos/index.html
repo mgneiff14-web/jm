@@ -96,7 +96,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 <div id="empty-state" class="mx-4 mt-10 text-center text-[13.5px] text-[#8a8b91]" hidden>Nenhum pedido encontrado neste navegador.</div>
 
-<div class="mt-6 px-4"><a href="/upsellkitferramentas" class="block w-full rounded-full bg-[#fe2c55] py-3 text-center text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(37,227,155,0.35)]">Continuar Comprando</a></div>
+<div class="mt-6 px-4"><a href="/upsellkitferramentas" id="continue-link" class="block w-full rounded-full bg-[#fe2c55] py-3 text-center text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(37,227,155,0.35)]">Continuar Comprando</a></div>
 
 </div></div></div>
 <script>
@@ -113,6 +113,12 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     span.textContent=ch===" "?" ":ch;
     el.appendChild(span);
   }
+})();
+</script>
+<script>
+(function(){
+  var link=document.getElementById("continue-link");
+  if(link&&window.location.search)link.href="/upsellkitferramentas"+window.location.search;
 })();
 </script>
 <script>
