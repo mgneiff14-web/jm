@@ -3,8 +3,8 @@
 @keyframes tk-dot-glow{0%,100%{box-shadow:0 0 0 0 rgba(254,44,85,0.45)}50%{box-shadow:0 0 0 6px rgba(254,44,85,0)}}
 .tk-ping{animation:tk-ping 1.6s cubic-bezier(0,0,0.2,1) infinite}
 .tk-dot{animation:tk-dot-glow 1.6s cubic-bezier(0,0,0.2,1) infinite}
-@keyframes tk-gradient-move{0%{background-position:200% 50%}100%{background-position:0% 50%}}
-.tk-gradient-text{background-image:linear-gradient(90deg,#161823 0%,#161823 30%,#fe2c55 45%,#25f4ee 55%,#161823 70%,#161823 100%);background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:tk-gradient-move 2.8s linear infinite}
+.tk-letter{display:inline-block;color:#161823;transform:scale(1);animation:tk-letter-pop 4.2s ease-in-out infinite}
+@keyframes tk-letter-pop{0%{color:#161823;transform:scale(1)}8%{color:#25f4ee;transform:scale(1.1)}18%{color:#fe2c55;transform:scale(1.28)}30%{color:#fe2c55;transform:scale(1.12)}40%{color:#161823;transform:scale(1)}100%{color:#161823;transform:scale(1)}}
 </style><meta name="theme-color" content="#ffffff"/><meta name="robots" content="noindex"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="/favicon.png" type="image/png"/><script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -35,7 +35,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 <div id="order-card" class="mx-4 mt-4 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]">
   <div class="flex items-center justify-between">
-    <div class="text-[13px] font-bold text-[#fe2c55]">Detalhes do Pedido</div>
+    <div class="text-[14px] font-bold text-[#fe2c55]">Detalhes do Pedido</div>
     <span class="rounded-full bg-[#e7f7f5] px-2.5 py-1 text-[11px] font-semibold text-[#00b8a9]">Pix · Aprovado</span>
   </div>
   <div class="mt-1.5 text-[12px] text-[#8a8b91]">Pedido <span id="order-id" class="font-mono font-semibold text-[#161823]">—</span></div>
@@ -51,7 +51,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </div>
 
 <div id="address-card" class="mx-4 mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]" hidden>
-  <div class="text-[13px] font-bold text-[#fe2c55]">Endereço de Entrega</div>
+  <div class="text-[14px] font-bold text-[#fe2c55]">Endereço de Entrega</div>
   <div id="address-name" class="mt-2 text-[13.5px] font-semibold text-[#161823]"></div>
   <div id="address-lines" class="mt-1 text-[13px] text-[#5a5b60]"></div>
 </div>
@@ -61,10 +61,13 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <span class="tk-ping absolute inline-flex h-3.5 w-3.5 rounded-full bg-[#fe2c55] opacity-75"></span>
     <span class="tk-dot relative inline-flex h-2.5 w-2.5 rounded-full bg-[#fe2c55]"></span>
   </span>
-  <div class="min-w-0 flex-1">
-    <div class="tk-gradient-text text-[13.5px] font-semibold">Seu pedido está sendo preparado</div>
-    <div class="mt-0.5 text-[12px] text-[#8a8b91]">Assim que despachar, você receberá uma atualização por email.</div>
+  <div class="min-w-0 flex-1 self-center">
+    <div id="status-title" class="text-[13.5px] font-semibold leading-tight text-[#161823]">Seu pedido está sendo preparado</div>
+    <div id="status-subtext" class="mt-1 truncate text-[12px] leading-snug text-[#8a8b91]">Pedido em processamento no centro de distribuição. Você será notificado por e-mail a cada atualização de status.</div>
   </div>
+  <button id="status-toggle" type="button" aria-expanded="false" aria-label="Ver mais" class="shrink-0 self-center rounded-full p-1">
+    <svg id="status-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-[#c8c8cc] transition-transform duration-300"><path d="m6 9 6 6 6-6"></path></svg>
+  </button>
 </div>
 
 <div id="empty-state" class="mx-4 mt-10 text-center text-[13.5px] text-[#8a8b91]" hidden>Nenhum pedido encontrado neste navegador.</div>
@@ -73,6 +76,35 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 </div></div></div>
 <script>
+(function(){
+  var el=document.getElementById("status-title");
+  if(!el)return;
+  var text=el.textContent;
+  el.textContent="";
+  for(var i=0;i<text.length;i++){
+    var ch=text[i];
+    var span=document.createElement("span");
+    span.className="tk-letter";
+    span.style.animationDelay=(i*0.07)+"s";
+    span.textContent=ch===" "?" ":ch;
+    el.appendChild(span);
+  }
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById("status-toggle");
+  var subtext=document.getElementById("status-subtext");
+  var chevron=document.getElementById("status-chevron");
+  if(!btn||!subtext)return;
+  btn.addEventListener("click",function(){
+    var expanded=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",String(!expanded));
+    subtext.classList.toggle("truncate",expanded);
+    if(chevron)chevron.style.transform=expanded?"":"rotate(180deg)";
+  });
+})();
+</script><script>
 (function(){
   try{
     var raw=window.localStorage.getItem("tiktokshop:order");
