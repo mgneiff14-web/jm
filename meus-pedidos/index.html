@@ -31,12 +31,14 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </head><body><div class="min-h-screen w-full bg-[#e5e5e7]"><div class="mx-auto min-h-screen w-full max-w-[440px] bg-white shadow-[0_0_40px_rgba(0,0,0,0.08)]"><div class="min-h-screen bg-[#f5f5f5] pb-24">
 
 <div class="sticky top-0 z-30 bg-white"><div class="relative flex h-11 items-center px-2"><a href="/pedido-confirmado" aria-label="Voltar" class="grid h-9 w-9 place-items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="h-[22px] w-[22px] text-[#161823]"><path d="m15 18-6-6 6-6"></path></svg></a><div class="pointer-events-none absolute left-1/2 -translate-x-1/2 text-[15px] font-semibold text-[#161823]">Meus Pedidos</div></div><div class="h-px bg-[#f0f0f0]"></div></div>
+<div class="h-[4px] overflow-hidden bg-white" aria-hidden="true"><svg width="100%" height="4" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="tt-ribbon-pedidos" x="0" y="0" width="64" height="4" patternUnits="userSpaceOnUse"><rect x="2" y="0.75" width="26" height="2.5" rx="0.5" fill="#25f4ee" transform="skewX(-20)"></rect><rect x="34" y="0.75" width="26" height="2.5" rx="0.5" fill="#fe2c55" transform="skewX(-20)"></rect></pattern></defs><rect width="100%" height="4" fill="url(#tt-ribbon-pedidos)"></rect></svg></div>
 
 <div id="order-card" class="mx-4 mt-4 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]">
   <div class="flex items-center justify-between">
-    <div class="text-[12px] text-[#8a8b91]">Pedido <span id="order-id" class="font-mono font-semibold text-[#161823]">—</span></div>
+    <div class="text-[13px] font-bold uppercase tracking-wide text-[#fe2c55]">Detalhes do pedido</div>
     <span class="rounded-full bg-[#e7f7f5] px-2.5 py-1 text-[11px] font-semibold text-[#00b8a9]">Pix · Aprovado</span>
   </div>
+  <div class="mt-1.5 text-[12px] text-[#8a8b91]">Pedido <span id="order-id" class="font-mono font-semibold text-[#161823]">—</span></div>
   <div class="my-3 h-px bg-[#f0f0f0]"></div>
   <div class="flex gap-3">
     <img src="https://promotiktok.b-cdn.net/media/3a6e2019-320a-446d-9306-bb7daebf9e01/header-1.webp" class="h-16 w-16 shrink-0 rounded-md object-cover" alt=""/>
@@ -49,7 +51,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </div>
 
 <div id="address-card" class="mx-4 mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]" hidden>
-  <div class="text-[13px] font-semibold text-[#161823]">Endereço de entrega</div>
+  <div class="text-[13px] font-bold uppercase tracking-wide text-[#fe2c55]">Endereço de entrega</div>
   <div id="address-name" class="mt-2 text-[13.5px] font-semibold text-[#161823]"></div>
   <div id="address-lines" class="mt-1 text-[13px] text-[#5a5b60]"></div>
 </div>
