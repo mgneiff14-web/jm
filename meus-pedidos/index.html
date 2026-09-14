@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/><link rel="stylesheet" href="/assets/styles-dGQVARyc.css" data-precedence="default"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" data-precedence="default"/><script src="https://www.googletagmanager.com/gtag/js?id=G-RXJJYPE0WZ" async=""></script><title>Meus Pedidos | TikTok Shop</title><meta name="theme-color" content="#ffffff"/><meta name="robots" content="noindex"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="/favicon.png" type="image/png"/><script>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/><link rel="stylesheet" href="/assets/styles-dGQVARyc.css" data-precedence="default"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" data-precedence="default"/><script src="https://www.googletagmanager.com/gtag/js?id=G-RXJJYPE0WZ" async=""></script><title>Meus Pedidos | TikTok Shop</title><style>
+@keyframes tk-ping{75%,100%{transform:scale(2.4);opacity:0}}
+@keyframes tk-dot-glow{0%,100%{box-shadow:0 0 0 0 rgba(254,44,85,0.45)}50%{box-shadow:0 0 0 6px rgba(254,44,85,0)}}
+.tk-ping{animation:tk-ping 1.6s cubic-bezier(0,0,0.2,1) infinite}
+.tk-dot{animation:tk-dot-glow 1.6s cubic-bezier(0,0,0.2,1) infinite}
+</style><meta name="theme-color" content="#ffffff"/><meta name="robots" content="noindex"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="/favicon.png" type="image/png"/><script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -41,20 +46,21 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   </div>
 </div>
 
-<div class="mx-4 mt-3 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]">
-  <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#fff4e5]">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-[#ff8a1f]"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
-  </div>
-  <div class="min-w-0 flex-1">
-    <div class="text-[13.5px] font-semibold text-[#161823]">Seu pedido está sendo preparado</div>
-    <div class="mt-0.5 text-[12px] text-[#8a8b91]">Assim que despachar, você recebe uma atualização por email.</div>
-  </div>
-</div>
-
 <div id="address-card" class="mx-4 mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]" hidden>
   <div class="text-[13px] font-semibold text-[#161823]">Endereço de entrega</div>
   <div id="address-name" class="mt-2 text-[13.5px] font-semibold text-[#161823]"></div>
   <div id="address-lines" class="mt-1 text-[13px] text-[#5a5b60]"></div>
+</div>
+
+<div class="mx-4 mt-3 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.06)] ring-1 ring-[#eef0f2]">
+  <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#fff0f3]">
+    <span class="tk-ping absolute inline-flex h-3.5 w-3.5 rounded-full bg-[#fe2c55] opacity-75"></span>
+    <span class="tk-dot relative inline-flex h-2.5 w-2.5 rounded-full bg-[#fe2c55]"></span>
+  </span>
+  <div class="min-w-0 flex-1">
+    <div class="text-[13.5px] font-semibold text-[#161823]">Seu pedido está sendo preparado</div>
+    <div class="mt-0.5 text-[12px] text-[#8a8b91]">Assim que despachar, você receberá uma atualização por email.</div>
+  </div>
 </div>
 
 <div id="empty-state" class="mx-4 mt-10 text-center text-[13.5px] text-[#8a8b91]" hidden>Nenhum pedido encontrado neste navegador.</div>
