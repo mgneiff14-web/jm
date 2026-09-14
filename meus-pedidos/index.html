@@ -57,20 +57,30 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   try{
     var raw=window.localStorage.getItem("tiktokshop:order");
     var o=raw?JSON.parse(raw):null;
-    if(!o||!o.paidInvoiceId){
+
+    // Fonte principal: o número que veio na própria URL (link enviado por /pedido-confirmado).
+    // Isso sobrevive mesmo se o localStorage tiver sido perdido no meio do caminho.
+    var urlOrderId=new URLSearchParams(window.location.search).get("pedido");
+    var orderId=urlOrderId||(o&&o.paidInvoiceId?("TK"+String(o.paidInvoiceId).replace(/[^0-9A-Za-z]/g,"")):null);
+
+    if(!orderId){
       document.getElementById("order-card").hidden=true;
       document.getElementById("empty-state").hidden=false;
       return;
     }
-    var qty=o.qty||1;
-    var price=(o.productPrice!=null?o.productPrice:97.9);
+
+    // Detalhes (produto/qtd/total/endereço) vêm do localStorage quando disponível.
+    // O produto desse funil é sempre o mesmo, então na ausência do localStorage
+    // mostramos os valores padrão em vez de deixar a tela quebrada.
+    var qty=(o&&o.qty)||1;
+    var price=(o&&o.productPrice!=null)?o.productPrice:97.9;
     var total=(price*qty).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
-    var orderId="TK"+String(o.paidInvoiceId).replace(/[^0-9A-Za-z]/g,"");
+
     document.getElementById("order-id").textContent="#"+orderId;
     document.getElementById("order-qty").textContent=qty;
     document.getElementById("order-total").textContent="R$ "+total;
-    if(o.productTitle){document.getElementById("order-title").textContent=o.productTitle;}
-    if(o.address){
+    if(o&&o.productTitle){document.getElementById("order-title").textContent=o.productTitle;}
+    if(o&&o.address){
       var a=o.address;
       document.getElementById("address-card").hidden=false;
       document.getElementById("address-name").textContent=(a.nome||"Destinatário")+(a.telefone?", "+a.telefone:"");

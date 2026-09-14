@@ -25,14 +25,15 @@ function A(){
   let qty=O.qty||1;
   let price=O.productPrice??97.9;
   let total=price*qty;
-  let orderId=`TK${O.paidInvoiceId?String(O.paidInvoiceId).replace(/[^0-9A-Za-z]/g,``):String(Date.now()).slice(-10)}`;
+  let orderId=O.paidInvoiceId?`TK${String(O.paidInvoiceId).replace(/[^0-9A-Za-z]/g,``)}`:null;
+  let meusPedidosHref=orderId?`/meus-pedidos?pedido=${encodeURIComponent(orderId)}`:`/meus-pedidos`;
 
   return (0,D.jsx)(d,{children:(0,D.jsxs)(`div`,{className:`min-h-screen bg-[#f5f5f5] pb-24`,children:[
     (0,D.jsxs)(`div`,{className:`bg-white px-4 pb-6 pt-10 text-center`,children:[
       (0,D.jsx)(`div`,{className:`mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#e7f7f5]`,children:(0,D.jsx)(CircleCheck,{className:`h-9 w-9 text-[#00b8a9]`})}),
       (0,D.jsx)(`h1`,{className:`mt-3 text-[20px] font-bold`,children:`Pedido realizado!`}),
       (0,D.jsx)(`p`,{className:`mt-1 text-[13px] text-[#5a5b60]`,children:`Você receberá atualizações sobre o envio por email.`}),
-      (0,D.jsxs)(`div`,{className:`mt-4 inline-flex items-center rounded-full bg-[#f5f5f5] px-3 py-1 text-[12px] text-[#5a5b60]`,children:[`Nº do pedido: `,(0,D.jsx)(`span`,{className:`ml-1 font-mono font-semibold text-[#161823]`,children:orderId})]})
+      orderId&&(0,D.jsxs)(`div`,{className:`mt-4 inline-flex items-center rounded-full bg-[#f5f5f5] px-3 py-1 text-[12px] text-[#5a5b60]`,children:[`Nº do pedido: `,(0,D.jsx)(`span`,{className:`ml-1 font-mono font-semibold text-[#161823]`,children:orderId})]})
     ]}),
     (0,D.jsx)(`div`,{className:`mt-2 bg-white px-4 py-3`,children:(0,D.jsxs)(`div`,{className:`flex gap-3`,children:[
       (0,D.jsx)(`img`,{src:h.url,className:`h-16 w-16 rounded-md object-cover`,alt:``}),
@@ -61,7 +62,7 @@ function A(){
     ]}),
     (0,D.jsxs)(`div`,{className:`fixed inset-x-0 bottom-0 z-40 mx-auto flex max-w-[440px] gap-2 bg-white px-4 py-3 pb-[max(env(safe-area-inset-bottom),12px)]`,children:[
       (0,D.jsx)(r,{to:`/upsellkitferramentas`,className:`flex-1 rounded-full border border-[#e5e5e7] py-3 text-center text-[15px] font-semibold text-[#161823]`,children:`Continuar comprando`}),
-      (0,D.jsx)(`a`,{href:`/meus-pedidos`,className:`flex-1 rounded-full bg-[#fe2c55] py-3 text-center text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(37,227,155,0.35)]`,children:`Meus pedidos`})
+      (0,D.jsx)(`a`,{href:meusPedidosHref,className:`flex-1 rounded-full bg-[#fe2c55] py-3 text-center text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(37,227,155,0.35)]`,children:`Meus pedidos`})
     ]})
   ]})});
 }
