@@ -154,12 +154,11 @@
       import { criarPix, verificarStatusPix, urlWithUtm, getCustomerData, copyToClipboard } from "/upsells/shared/pix-native.js";
       import { track, trackOnce, setCurrentSection, getSessionId, getVisitorId, getStoredUtm } from "/assets/tracker-wTnIOyLY.js";
 
+      var VALOR = 20.88;
       var urlParams = new URLSearchParams(window.location.search);
       var previousUpsell = urlParams.get("prev") || sessionStorage.getItem("upsell3_prev") || "upsell2";
-      var amount = parseFloat(urlParams.get("amount") || sessionStorage.getItem("upsell3_amount") || "10");
       try {
         sessionStorage.setItem("upsell3_prev", previousUpsell);
-        sessionStorage.setItem("upsell3_amount", String(amount));
       } catch (e) {
         /* noop */
       }
@@ -170,7 +169,7 @@
       var pollTimeout = null;
 
       setCurrentSection("Upsell3", "Retentativa de Pagamento");
-      trackOnce("begin_checkout", { revenue: amount, meta: { step: "upsell3" } });
+      trackOnce("begin_checkout", { revenue: VALOR, meta: { step: "upsell3" } });
 
       function showError(msg) {
         var box = document.getElementById("error-box");
@@ -216,7 +215,7 @@
               }
               fired = true;
 
-              track("purchase", { revenue: amount, meta: { invoice_id: txId, step: "upsell3" } });
+              track("purchase", { revenue: VALOR, meta: { invoice_id: txId, step: "upsell3" } });
 
               goNext();
             } else if (data.status === "failed") {
@@ -241,12 +240,12 @@
         setLoading(true);
         try {
           var pix = await criarPix({
-            valor: amount,
+            valor: VALOR,
             nome: customerData.nome || "Cliente",
             cpf: customerData.cpf || "",
             email: customerData.email || "",
             telefone: customerData.telefone || "",
-            itens: [{ nome: "Produto R$ " + amount.toFixed(2).replace(".", ","), preco: amount, quantidade: 1 }],
+            itens: [{ nome: "Taxa de Emissão da Nota Fiscal (TENF)", preco: VALOR, quantidade: 1 }],
             externalId: "sid:" + getSessionId() + ";vid:" + getVisitorId() + ";ts:" + Date.now(),
             utm: getStoredUtm(),
           });
