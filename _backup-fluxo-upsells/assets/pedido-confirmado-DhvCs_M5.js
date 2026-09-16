@@ -24,9 +24,6 @@ function A(){
   let qty=O.qty||1;
   let price=O.productPrice??97.9;
   let total=price*qty;
-  let[extraItems,setExtraItems]=E.useState([]);
-  E.useEffect(()=>{try{let raw=window.localStorage.getItem(`tiktokshop:vitrine-cart-paid`);if(raw){let items=JSON.parse(raw);if(Array.isArray(items)&&items.length>0)setExtraItems(items)}}catch{}},[]);
-  let extraTotal=extraItems.reduce((acc,it)=>acc+(it.price||0)*(it.qty||1),0);
   let urlOrderId=typeof window<`u`?new URLSearchParams(window.location.search).get(`pedido`):null;
   let orderId=urlOrderId||(O.paidInvoiceId?`TK${String(O.paidInvoiceId).replace(/[^0-9A-Za-z]/g,``)}`:null);
   let meusPedidosHref=orderId?`/meus-pedidos?pedido=${encodeURIComponent(orderId)}`:`/meus-pedidos`;
@@ -40,28 +37,14 @@ function A(){
       (0,D.jsx)(`p`,{className:`mt-1 text-[13px] text-[#5a5b60]`,children:`Você receberá atualizações sobre o envio por email.`}),
       orderId&&(0,D.jsxs)(`div`,{className:`mt-4 inline-flex items-center rounded-full bg-[#f5f5f5] px-3 py-1 text-[12px] text-[#5a5b60]`,children:[`Nº do pedido: `,(0,D.jsx)(`span`,{className:`ml-1 font-mono font-semibold text-[#161823]`,children:orderId})]})
     ]}),
-    (0,D.jsxs)(`div`,{className:`mt-2 bg-white px-4 py-3`,children:[
-      (0,D.jsxs)(`div`,{className:`flex gap-3`,children:[
-        (0,D.jsx)(`img`,{src:h.url,className:`h-16 w-16 rounded-md object-cover`,alt:``}),
-        (0,D.jsxs)(`div`,{className:`flex-1`,children:[
-          (0,D.jsx)(`div`,{className:`line-clamp-3 text-[13.5px] leading-[1.35]`,children:productTitle}),
-          (0,D.jsxs)(`div`,{className:`mt-1 text-[12px] text-[#8a8b91]`,children:[`Qtd: `,qty]})
-        ]}),
-        (0,D.jsxs)(`div`,{className:`text-[14px] font-bold text-[#fe2c55]`,children:[`R$ `,fmt(total)]})
+    (0,D.jsx)(`div`,{className:`mt-2 bg-white px-4 py-3`,children:(0,D.jsxs)(`div`,{className:`flex gap-3`,children:[
+      (0,D.jsx)(`img`,{src:h.url,className:`h-16 w-16 rounded-md object-cover`,alt:``}),
+      (0,D.jsxs)(`div`,{className:`flex-1`,children:[
+        (0,D.jsx)(`div`,{className:`line-clamp-3 text-[13.5px] leading-[1.35]`,children:productTitle}),
+        (0,D.jsxs)(`div`,{className:`mt-1 text-[12px] text-[#8a8b91]`,children:[`Qtd: `,qty]})
       ]}),
-      extraItems.map((it,idx)=>(0,D.jsxs)(`div`,{className:`flex gap-3 mt-3`,children:[
-        (0,D.jsx)(`img`,{src:it.image,className:`h-16 w-16 rounded-md bg-white object-contain`,alt:``}),
-        (0,D.jsxs)(`div`,{className:`flex-1`,children:[
-          (0,D.jsx)(`div`,{className:`line-clamp-3 text-[13.5px] leading-[1.35]`,children:it.name}),
-          (0,D.jsxs)(`div`,{className:`mt-1 text-[12px] text-[#8a8b91]`,children:[`Qtd: `,it.qty]})
-        ]}),
-        (0,D.jsxs)(`div`,{className:`text-[14px] font-bold text-[#fe2c55]`,children:[`R$ `,fmt((it.price||0)*(it.qty||1))]})
-      ]},it.id??idx)),
-      extraItems.length>0&&(0,D.jsxs)(`div`,{className:`flex items-center justify-between border-t border-[#f0f0f0] pt-3 mt-3`,children:[
-        (0,D.jsx)(`div`,{className:`text-[14px] font-bold`,children:`Total do pedido`}),
-        (0,D.jsxs)(`div`,{className:`text-[15px] font-bold text-[#fe2c55]`,children:[`R$ `,fmt(total+extraTotal)]})
-      ]})
-    ]}),
+      (0,D.jsxs)(`div`,{className:`text-[14px] font-bold text-[#fe2c55]`,children:[`R$ `,fmt(total)]})
+    ]})}),
     (0,D.jsxs)(`div`,{className:`mt-2 bg-white`,children:[
       (0,D.jsxs)(`button`,{className:`flex w-full items-center gap-3 px-4 py-3.5 border-b border-[#f0f0f0]`,children:[
         (0,D.jsx)(`span`,{children:(0,D.jsx)(p,{className:`h-5 w-5 text-[#161823]`,strokeWidth:1.7})}),
